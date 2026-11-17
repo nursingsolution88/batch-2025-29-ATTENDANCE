@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjeevani College Attendance | संजीवनी कॉलेज अटेंडेंस पोर्टल</title>
+    
+    <!-- Tailwind CSS for modern, responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & Noto Sans Devanagari for crisp English & Hindi typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Medical & UI Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans Devanagari', 'sans-serif'],
+                    },
+                    colors: {
+                        medical: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        tealaccent: {
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-100 text-slate-800 flex flex-col h-screen overflow-hidden select-none sm:select-auto">
+
+    <!-- ==================== 1. TOP NAVIGATION BAR ==================== -->
+    <header class="bg-gradient-to-r from-medical-900 via-medical-800 to-tealaccent-700 text-white shadow-md z-30 shrink-0">
+        <div class="max-w-full mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2">
+            
+            <!-- Brand / College Title -->
+            <div class="flex items-center space-x-3">
+                <div class="bg-white/15 backdrop-blur-sm p-2 rounded-xl border border-white/20 shadow-inner flex items-center justify-center">
+                    <i class="fa-solid fa-user-nurse text-xl sm:text-2xl text-teal-300"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-base sm:text-lg md:text-xl font-bold tracking-tight leading-tight">
+                            Sanjeevani College Attendance
+                        </h1>
+                        <span class="hidden md:inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-teal-400/20 text-teal-200 border border-teal-300/30">
+                            Udaipur
+                        </span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-sky-200 font-medium">
+                        संजीवनी कॉलेज अटेंडेंस पोर्टल <span class="hidden sm:inline text-sky-300/80">| Digital Attendance System</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Controls: Live Clock, Portal Switcher, Reload, Open in New Tab, Promo Toggle -->
+            <div class="flex items-center gap-1.5 sm:gap-2 ml-auto flex-wrap">
+                
+                <!-- Live Date & Time Pill -->
+                <div class="hidden xl:flex items-center gap-2 bg-black/25 px-3 py-1.5 rounded-xl border border-white/10 text-xs font-medium text-sky-100">
+                    <i class="fa-regular fa-clock text-teal-300"></i>
+                    <span id="liveClock">Loading time...</span>
+                </div>
+
+                <!-- Portal 1 / Portal 2 Switcher -->
+                <div class="flex items-center bg-black/25 p-1 rounded-xl border border-white/15 text-xs font-semibold">
+                    <button onclick="switchPortal(1)" id="btnPortal1"
+                        class="px-2.5 py-1 rounded-lg bg-tealaccent-500 text-white shadow transition cursor-pointer">
+                        Portal 1
+                    </button>
+                    <button onclick="switchPortal(2)" id="btnPortal2"
+                        class="px-2.5 py-1 rounded-lg text-sky-200 hover:text-white transition cursor-pointer">
+                        Portal 2
+                    </button>
+                </div>
+
+                <!-- Toggle Nursing Solution Banner Button (with subtle avatar) -->
+                <button onclick="togglePromoBanner()" id="promoToggleBtn" title="Nursing Solution ऑफर/बैनर दिखाएं या छुपाएं"
+                    class="flex items-center gap-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-2.5 sm:px-3 py-1.5 rounded-xl text-xs sm:text-sm shadow transition active:scale-95 cursor-pointer">
+                    <img src="https://lh3.googleusercontent.com/d/1SNjko8U7JNqFYGgSnWSH6TrUaak3QJEQ=s100"
+                         onerror="handlePhotoError(this)"
+                         alt="Suresh Sir"
+                         class="w-5 h-5 rounded-full object-cover border border-slate-900/30 bg-slate-800">
+                    <span class="hidden sm:inline">Nursing Solution</span>
+                    <i id="promoChevron" class="fa-solid fa-chevron-up text-xs transition-transform duration-200"></i>
+                </button>
+
+                <!-- Reload Portal Button -->
+                <button onclick="reloadIframe()" title="पोर्टल रीलोड करें (Reload Attendance Portal)"
+                    class="flex items-center gap-1.5 bg-white/15 hover:bg-white/25 text-white font-medium px-2.5 sm:px-3 py-2 rounded-xl text-xs sm:text-sm border border-white/20 transition active:scale-95 cursor-pointer">
+                    <i id="reloadIcon" class="fa-solid fa-rotate-right"></i>
+                    <span class="hidden md:inline">Reload</span>
+                </button>
+
+                <!-- Open in New Tab Fallback Button -->
+                <a id="newTabLink"
+                   href="https://script.google.com/macros/s/AKfycbyAonMVlw7QoKtHWRl7zh8-3IOWoRqpF_oNsNO0arPJbEg6C9ikSatKTguqwNM7UJvIPQ/exec" 
+                   target="_blank" rel="noopener noreferrer"
+                   title="नए टैब में खोलें (Open in New Tab)"
+                   class="flex items-center gap-1.5 bg-tealaccent-500 hover:bg-tealaccent-600 text-white font-semibold px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm shadow transition active:scale-95">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span class="hidden sm:inline">New Tab</span>
+                </a>
+
+                <!-- Help / Embed Info Modal Trigger -->
+                <button onclick="toggleHelpModal(true)" title="मदद / तकनीकी जानकारी"
+                    class="bg-white/10 hover:bg-white/20 text-sky-100 p-2 rounded-xl border border-white/15 transition cursor-pointer">
+                    <i class="fa-solid fa-circle-info text-sm sm:text-base"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== 2. NURSING SOLUTION PROMOTIONAL BANNER ==================== -->
+    <section id="nursingSolutionBanner" class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white border-b border-teal-500/30 shadow-lg z-20 shrink-0 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+                
+                <!-- Left Branding & Suresh Sir Photo -->
+                <div class="flex items-center gap-3.5">
+                    <!-- Suresh Sir Framed Profile Photo with Glowing Emerald/Teal Ring -->
+                    <div class="relative shrink-0 group" title="यदि फोटो न दिखे तो Google Drive फाइल को 'Anyone with the link' पर सेट करें">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr from-emerald-400 via-teal-400 to-sky-400 p-0.5 shadow-lg shadow-teal-500/25">
+                            <img id="sureshSirPhoto"
+                                 src="https://lh3.googleusercontent.com/d/1SNjko8U7JNqFYGgSnWSH6TrUaak3QJEQ=s400"
+                                 onerror="handlePhotoError(this)"
+                                 alt="Suresh Sir - Nursing Solution"
+                                 class="w-full h-full object-cover rounded-[14px] bg-slate-900">
+                        </div>
+                        <!-- Verified Educator Checkmark Badge -->
+                        <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-slate-950 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full border-2 border-slate-950 flex items-center gap-0.5 shadow">
+                            <i class="fa-solid fa-circle-check text-[9px]"></i> TUTOR
+                        </span>
+                    </div>
+
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="text-sm sm:text-base font-extrabold bg-gradient-to-r from-amber-300 via-yellow-200 to-teal-300 bg-clip-text text-transparent">
+                                Nursing Solution (@nursingsolution88)
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                                <i class="fa-solid fa-user-graduate text-[10px]"></i> Suresh Sir • B.Sc. Nursing Tutor
+                            </span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-0.5 leading-snug">
+                            <span class="text-teal-300 font-semibold">NORCET, RRB, CHO एवं RUHS B.Sc. Nursing</span> परीक्षाओं की बेहतरीन तैयारी, डेली क्विज़ व निःशुल्क क्लासेस के लिए जुड़ें!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Action Buttons -->
+                <div class="flex flex-wrap items-center gap-2 w-full md:w-auto justify-end">
+                    <a href="https://www.youtube.com/@nursingsolution88" target="_blank" rel="noopener noreferrer"
+                       class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-xl shadow-md shadow-red-950/50 transition transform hover:-translate-y-0.5">
+                        <i class="fa-brands fa-youtube text-base"></i>
+                        <span>YouTube चैनल सब्सक्राइब करें</span>
+                    </a>
+                    
+                    <button onclick="togglePromoBanner()" 
+                        class="inline-flex items-center justify-center gap-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs font-medium px-3 py-2 rounded-xl border border-white/15 transition cursor-pointer"
+                        title="अटेंडेंस स्क्रीन बड़ी करने के लिए बैनर छुपाएं">
+                        <i class="fa-solid fa-compress"></i>
+                        <span>Hide</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. MAIN FULL-HEIGHT INTERACTIVE PORTAL CONTAINER ==================== -->
+    <main class="relative flex-1 w-full bg-slate-200 overflow-hidden flex flex-col">
+        
+        <!-- Smooth Loading Spinner Overlay -->
+        <div id="loaderOverlay" class="absolute inset-0 bg-slate-50/95 backdrop-blur-sm z-10 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-500">
+            <div class="relative w-16 h-16 mb-4">
+                <div class="absolute inset-0 rounded-full border-4 border-medical-100"></div>
+                <div class="absolute inset-0 rounded-full border-4 border-tealaccent-600 border-t-transparent animate-spin"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <i class="fa-solid fa-heart-pulse text-medical-700 text-xl animate-pulse"></i>
+                </div>
+            </div>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-800">
+                संजीवनी कॉलेज अटेंडेंस पोर्टल लोड हो रहा है...
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-md">
+                Connecting securely to Sanjeevani College of Nursing Attendance Web App. Please wait a moment.
+            </p>
+        </div>
+
+        <!-- Subtle Top Notice Bar for Direct Access / Troubleshooting -->
+        <div id="fallbackStrip" class="bg-sky-50 border-b border-sky-200 px-3 py-1.5 text-xs text-sky-900 flex flex-wrap items-center justify-between gap-2 shrink-0">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <span>
+                    <strong id="activePortalLabel">Active: Portal 1 (Primary)</strong> — यदि पेज खाली दिखे तो <strong>Portal 2</strong> या <strong>"New Tab"</strong> बटन चुनें।
+                </span>
+            </div>
+            <button onclick="toggleHelpModal(true)" class="text-medical-700 hover:text-medical-900 font-semibold underline cursor-pointer">
+                तकनीकी समाधान देखें (X-Frame / Drive Photo Info)
+            </button>
+        </div>
+
+        <!-- Embedded Google Apps Script Iframe (Starts with Primary URL) -->
+        <iframe 
+            id="attendanceFrame"
+            src="https://script.google.com/macros/s/AKfycbyAonMVlw7QoKtHWRl7zh8-3IOWoRqpF_oNsNO0arPJbEg6C9ikSatKTguqwNM7UJvIPQ/exec"
+            title="Sanjeevani College Attendance"
+            class="w-full flex-1 border-0 bg-white"
+            allow="geolocation; microphone; camera; fullscreen; clipboard-read; clipboard-write"
+            loading="eager"
+            onload="handleIframeLoad()">
+        </iframe>
+
+    </main>
+
+    <!-- ==================== 4. COMPACT FOOTER ==================== -->
+    <footer class="bg-white border-t border-slate-200 px-4 py-1.5 text-[11px] sm:text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2 shrink-0 z-20">
+        <div class="flex items-center gap-2">
+            <span class="font-semibold text-medical-800">Sanjeevani College Attendance</span>
+            <span class="hidden sm:inline text-slate-400">|</span>
+            <span class="hidden sm:inline">संजीवनी कॉलेज ऑफ नर्सिंग</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span>Created by <strong>Suresh Sir</strong> •</span>
+            <a href="https://www.youtube.com/@nursingsolution88" target="_blank" rel="noopener noreferrer" 
+               class="font-bold text-indigo-700 hover:text-red-600 transition flex items-center gap-1">
+                <i class="fa-brands fa-youtube text-red-600"></i> Nursing Solution (@nursingsolution88)
+            </a>
+        </div>
+    </footer>
+
+    <!-- ==================== 5. FALLBACK & TECHNICAL HELP MODAL ==================== -->
+    <div id="helpModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden animate-fadeIn">
+            <div class="bg-gradient-to-r from-medical-800 to-tealaccent-700 px-5 py-4 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-shield-halved text-xl text-teal-200"></i>
+                    <h3 class="font-bold text-base sm:text-lg">पोर्टल सहायता एवं तकनीकी जानकारी</h3>
+                </div>
+                <button onclick="toggleHelpModal(false)" class="text-white/80 hover:text-white p-1 rounded-lg cursor-pointer">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="p-5 space-y-4 text-sm text-slate-700 leading-relaxed max-h-[80vh] overflow-y-auto">
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-3.5 rounded-r-xl">
+                    <p class="font-bold text-amber-900 mb-1">
+                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> यदि अटेंडेंस पेज अंदर लोड न हो (Blank Screen):
+                    </p>
+                    <p class="text-xs sm:text-sm text-amber-800">
+                        Google Apps Script सुरक्षा कारणों से <code>X-Frame-Options: SAMEORIGIN</code> सेट करता है, जिससे बाहरी HTML पेज में iframe ब्लॉक हो सकता है।
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-1.5">1. दोनों पोर्टल लिंक्स सीधे खोलें (Direct Links):</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="https://script.google.com/macros/s/AKfycbyAonMVlw7QoKtHWRl7zh8-3IOWoRqpF_oNsNO0arPJbEg6C9ikSatKTguqwNM7UJvIPQ/exec" 
+                           target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-1.5 bg-medical-700 hover:bg-medical-800 text-white font-semibold px-3.5 py-2 rounded-xl text-xs shadow transition">
+                            <i class="fa-solid fa-external-link-alt"></i> Portal 1 (Primary) खोलें
+                        </a>
+                        <a href="https://script.google.com/macros/s/AKfycbwg2NonBJUXWIjj5aWdg0GvfxljOs9qJH4rzhqYUDJZo2crc6Vgxadt6oGr0DGLnIfY1w/exec" 
+                           target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-1.5 bg-tealaccent-600 hover:bg-tealaccent-700 text-white font-semibold px-3.5 py-2 rounded-xl text-xs shadow transition">
+                            <i class="fa-solid fa-external-link-alt"></i> Portal 2 (Secondary) खोलें
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-sky-50 border border-sky-200 p-3 rounded-xl text-xs text-sky-900">
+                    <p class="font-bold mb-1"><i class="fa-brands fa-google-drive mr-1 text-sky-700"></i> Google Drive फोटो टिप:</p>
+                    <p>यदि बैनर में सुरेश सर की फोटो की जगह "SS" आइकन दिखे, तो Google Drive में उस फोटो पर Right-Click करके <strong>Share &rarr; General access &rarr; "Anyone with the link"</strong> कर दें।</p>
+                </div>
+
+                <div class="border-t border-slate-200 pt-3">
+                    <h4 class="font-bold text-slate-900 mb-1.5">2. Admin के लिए समाधान (Apps Script में स्थायी सुधार):</h4>
+                    <pre class="bg-slate-900 text-teal-300 p-3 rounded-xl text-xs overflow-x-auto font-mono">function doGet(e) {
+  return HtmlService.createHtmlOutputFromFile('Index')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}</pre>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end">
+                <button onclick="toggleHelpModal(false)" class="bg-slate-800 hover:bg-slate-900 text-white font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm transition cursor-pointer">
+                    ठीक है, समझ गया (Close)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+    <script>
+        const PORTAL_URLS = {
+            1: "https://script.google.com/macros/s/AKfycbyAonMVlw7QoKtHWRl7zh8-3IOWoRqpF_oNsNO0arPJbEg6C9ikSatKTguqwNM7UJvIPQ/exec",
+            2: "https://script.google.com/macros/s/AKfycbwg2NonBJUXWIjj5aWdg0GvfxljOs9qJH4rzhqYUDJZo2crc6Vgxadt6oGr0DGLnIfY1w/exec"
+        };
+        let activePortal = 1;
+        let isPromoVisible = true;
+
+        // Multi-step Google Drive Photo Fallback Handler
+        function handlePhotoError(imgElement) {
+            const step = parseInt(imgElement.dataset.fallbackStep || "0", 10);
+            if (step === 0) {
+                // First fallback: Google Drive Thumbnail API
+                imgElement.dataset.fallbackStep = "1";
+                imgElement.src = "https://drive.google.com/thumbnail?id=1SNjko8U7JNqFYGgSnWSH6TrUaak3QJEQ&sz=w400";
+            } else if (step === 1) {
+                // Second fallback: Clean SVG "SS" (Suresh Sir) Medical Avatar
+                imgElement.dataset.fallbackStep = "2";
+                const svgAvatar = `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#0d9488"/>
+                                <stop offset="100%" stop-color="#0369a1"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="100" height="100" fill="url(#bgGrad)"/>
+                        <text x="50" y="58" font-family="Inter, sans-serif" font-size="38" font-weight="800" fill="#ffffff" text-anchor="middle">SS</text>
+                    </svg>
+                `.trim();
+                imgElement.src = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svgAvatar);
+            }
+        }
+
+        // Switch between Portal 1 (Primary) and Portal 2 (Secondary)
+        function switchPortal(portalNumber) {
+            activePortal = portalNumber;
+            const url = PORTAL_URLS[portalNumber];
+            const iframe = document.getElementById('attendanceFrame');
+            const newTabLink = document.getElementById('newTabLink');
+            const label = document.getElementById('activePortalLabel');
+            const btn1 = document.getElementById('btnPortal1');
+            const btn2 = document.getElementById('btnPortal2');
+            const loader = document.getElementById('loaderOverlay');
+
+            if (loader) {
+                loader.style.display = 'flex';
+                loader.classList.remove('opacity-0', 'pointer-events-none');
+            }
+
+            if (iframe) iframe.src = url;
+            if (newTabLink) newTabLink.href = url;
+            if (label) {
+                label.textContent = portalNumber === 1 
+                    ? "Active: Portal 1 (Primary)" 
+                    : "Active: Portal 2 (Secondary)";
+            }
+
+            if (portalNumber === 1) {
+                btn1.className = "px-2.5 py-1 rounded-lg bg-tealaccent-500 text-white shadow transition cursor-pointer";
+                btn2.className = "px-2.5 py-1 rounded-lg text-sky-200 hover:text-white transition cursor-pointer";
+            } else {
+                btn2.className = "px-2.5 py-1 rounded-lg bg-tealaccent-500 text-white shadow transition cursor-pointer";
+                btn1.className = "px-2.5 py-1 rounded-lg text-sky-200 hover:text-white transition cursor-pointer";
+            }
+        }
+
+        // 1. Live Date & Time Updater (Indian Standard Format)
+        function updateClock() {
+            const now = new Date();
+            const options = {
+                weekday: 'short',
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            const clockEl = document.getElementById('liveClock');
+            if (clockEl) {
+                clockEl.textContent = now.toLocaleString('en-IN', options);
+            }
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 2. Handle Iframe Load Completion
+        function handleIframeLoad() {
+            const loader = document.getElementById('loaderOverlay');
+            if (loader) {
+                loader.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+        }
+
+        // Fallback timeout to hide loader even if browser delays onload event
+        setTimeout(() => {
+            handleIframeLoad();
+        }, 4500);
+
+        // 3. Reload Iframe Function
+        function reloadIframe() {
+            const iframe = document.getElementById('attendanceFrame');
+            const loader = document.getElementById('loaderOverlay');
+            const icon = document.getElementById('reloadIcon');
+
+            if (icon) icon.classList.add('animate-spin');
+            if (loader) {
+                loader.style.display = 'flex';
+                loader.classList.remove('opacity-0', 'pointer-events-none');
+            }
+
+            // Force fresh reload of currently active portal
+            iframe.src = PORTAL_URLS[activePortal];
+
+            setTimeout(() => {
+                if (icon) icon.classList.remove('animate-spin');
+            }, 1000);
+        }
+
+        // 4. Toggle Nursing Solution Promotional Banner
+        function togglePromoBanner() {
+            const banner = document.getElementById('nursingSolutionBanner');
+            const chevron = document.getElementById('promoChevron');
+            isPromoVisible = !isPromoVisible;
+
+            if (isPromoVisible) {
+                banner.style.display = 'block';
+                if (chevron) chevron.style.transform = 'rotate(0deg)';
+            } else {
+                banner.style.display = 'none';
+                if (chevron) chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // 5. Toggle Help / Technical Info Modal
+        function toggleHelpModal(show) {
+            const modal = document.getElementById('helpModal');
+            if (!modal) return;
+            if (show) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+    </script>
+</body>
+</html>
