@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjeevani College Attendance | संजीवनी कॉलेज अटेंडेंस पोर्टल</title>
+    <title>Sanjeevani College Attendance & Nursing Study Hub | @NsoGroup88</title>
     
-    <!-- Tailwind CSS for modern, responsive styling -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Inter & Noto Sans Devanagari for crisp English & Hindi typography -->
+    <!-- Google Fonts: Plus Jakarta Sans & Noto Sans Devanagari -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Medical & UI Icons -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <script>
@@ -21,203 +21,279 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'Noto Sans Devanagari', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans Devanagari"', 'sans-serif'],
                     },
                     colors: {
                         medical: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                        },
-                        tealaccent: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
                             500: '#14b8a6',
                             600: '#0d9488',
                             700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                            950: '#042f2e',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-4px)' },
                         }
                     }
                 }
             }
         }
     </script>
+
+    <style>
+        /* Custom ECG Line Animation & Scrollbar Polish */
+        .ecg-line {
+            stroke-dasharray: 240;
+            stroke-dashoffset: 240;
+            animation: dash 2.8s linear infinite;
+        }
+        @keyframes dash {
+            0% { stroke-dashoffset: 240; }
+            50% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -240; }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(13, 148, 136, 0.4);
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(13, 148, 136, 0.7);
+        }
+    </style>
 </head>
 <body class="bg-slate-100 text-slate-800 flex flex-col h-screen overflow-hidden select-none sm:select-auto">
 
-    <!-- ==================== 1. TOP NAVIGATION BAR ==================== -->
-    <header class="bg-gradient-to-r from-medical-900 via-medical-800 to-tealaccent-700 text-white shadow-md z-30 shrink-0">
-        <div class="max-w-full mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2">
+    <!-- ==================== 1. TOP LUMINOUS MEDICAL HEADER ==================== -->
+    <header class="bg-gradient-to-r from-slate-950 via-medical-950 to-emerald-950 text-white shadow-xl z-30 shrink-0 border-b border-emerald-500/30 relative overflow-hidden">
+        <!-- Subtle Ambient Glow -->
+        <div class="absolute -top-10 left-1/4 w-64 h-24 bg-emerald-500/15 blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-10 right-1/4 w-64 h-24 bg-teal-400/15 blur-2xl pointer-events-none"></div>
+
+        <div class="max-w-full mx-auto px-3 sm:px-5 py-2 flex flex-wrap items-center justify-between gap-2 relative z-10">
             
-            <!-- Brand / College Title -->
-            <div class="flex items-center space-x-3">
-                <div class="bg-white/15 backdrop-blur-sm p-2 rounded-xl border border-white/20 shadow-inner flex items-center justify-center">
-                    <i class="fa-solid fa-user-nurse text-xl sm:text-2xl text-teal-300"></i>
+            <!-- Left: College Brand + Live ECG SVG -->
+            <div class="flex items-center space-x-2.5 sm:space-x-3">
+                <div class="relative bg-gradient-to-br from-emerald-500/25 to-teal-500/10 backdrop-blur-md p-2 rounded-xl border border-emerald-400/40 shadow-inner flex items-center justify-center">
+                    <i class="fa-solid fa-user-nurse text-lg sm:text-xl text-emerald-300"></i>
+                    <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full animate-ping"></span>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
-                        <h1 class="text-base sm:text-lg md:text-xl font-bold tracking-tight leading-tight">
+                        <h1 class="text-sm sm:text-base md:text-lg font-extrabold tracking-tight leading-tight text-white">
                             Sanjeevani College Attendance
                         </h1>
-                        <span class="hidden md:inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-teal-400/20 text-teal-200 border border-teal-300/30">
-                            Udaipur
-                        </span>
+                        <!-- Animated Mini ECG Pulse SVG -->
+                        <svg class="hidden sm:block w-14 h-5 text-emerald-400" viewBox="0 0 120 30" fill="none">
+                            <path class="ecg-line" d="M0 15 H30 L38 5 L46 26 L54 2 L62 22 L68 15 H120" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
-                    <p class="text-xs sm:text-sm text-sky-200 font-medium">
-                        संजीवनी कॉलेज अटेंडेंस पोर्टल <span class="hidden sm:inline text-sky-300/80">| Digital Attendance System</span>
+                    <p class="text-[11px] sm:text-xs text-teal-200/90 font-medium">
+                        संजीवनी कॉलेज ऑफ नर्सिंग, उदयपुर <span class="hidden md:inline text-emerald-300/80">• Student Attendance &amp; Clinical Hub</span>
                     </p>
                 </div>
             </div>
 
-            <!-- Right Controls: Live Clock, Portal Switcher, Reload, Open in New Tab, Promo Toggle -->
+            <!-- Right: Student Streak, Study Hub CTA, Portal Switcher, Focus Mode, Reload & New Tab -->
             <div class="flex items-center gap-1.5 sm:gap-2 ml-auto flex-wrap">
                 
-                <!-- Live Date & Time Pill -->
-                <div class="hidden xl:flex items-center gap-2 bg-black/25 px-3 py-1.5 rounded-xl border border-white/10 text-xs font-medium text-sky-100">
-                    <i class="fa-regular fa-clock text-teal-300"></i>
-                    <span id="liveClock">Loading time...</span>
-                </div>
+                <!-- Student Daily Attendance Streak & Rank Pill -->
+                <button onclick="openStudyHub('streak')" title="आपकी डेली अटेंडेंस और स्टडी स्ट्रीक (Click for Rank Details)"
+                    class="flex items-center gap-1.5 bg-amber-500/15 hover:bg-amber-500/25 text-amber-200 px-2.5 py-1.5 rounded-xl border border-amber-400/35 text-xs font-bold transition cursor-pointer">
+                    <i class="fa-solid fa-fire text-amber-400 animate-pulse"></i>
+                    <span id="streakBadgeText">Day 1</span>
+                    <span class="hidden lg:inline text-[11px] bg-amber-400/20 px-1.5 py-0.5 rounded-md text-amber-300" id="studentRankBadge">Cadet</span>
+                </button>
+
+                <!-- Daily NORCET MCQ Quiz Launch Button (High Engagement) -->
+                <button onclick="openStudyHub('quiz')"
+                    class="flex items-center gap-1.5 bg-gradient-to-r from-amber-400 via-yellow-300 to-emerald-300 hover:brightness-105 text-slate-950 font-extrabold px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs sm:text-sm shadow-lg shadow-emerald-950/50 transition transform active:scale-95 cursor-pointer">
+                    <i class="fa-solid fa-brain text-slate-900"></i>
+                    <span>Daily MCQ Quiz</span>
+                    <span id="quizScorePill" class="bg-slate-950 text-emerald-300 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">0/6</span>
+                </button>
 
                 <!-- Portal 1 / Portal 2 Switcher -->
-                <div class="flex items-center bg-black/25 p-1 rounded-xl border border-white/15 text-xs font-semibold">
+                <div class="flex items-center bg-black/40 p-1 rounded-xl border border-white/15 text-xs font-bold">
                     <button onclick="switchPortal(1)" id="btnPortal1"
-                        class="px-2.5 py-1 rounded-lg bg-tealaccent-500 text-white shadow transition cursor-pointer">
+                        class="px-2 sm:px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 shadow transition cursor-pointer">
                         Portal 1
                     </button>
                     <button onclick="switchPortal(2)" id="btnPortal2"
-                        class="px-2.5 py-1 rounded-lg text-sky-200 hover:text-white transition cursor-pointer">
+                        class="px-2 sm:px-2.5 py-1 rounded-lg text-teal-100 hover:text-white transition cursor-pointer">
                         Portal 2
                     </button>
                 </div>
 
-                <!-- Toggle Nursing Solution Banner Button (with subtle avatar) -->
-                <button onclick="togglePromoBanner()" id="promoToggleBtn" title="Nursing Solution ऑफर/बैनर दिखाएं या छुपाएं"
-                    class="flex items-center gap-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-2.5 sm:px-3 py-1.5 rounded-xl text-xs sm:text-sm shadow transition active:scale-95 cursor-pointer">
-                    <img src="https://lh3.googleusercontent.com/d/1SNjko8U7JNqFYGgSnWSH6TrUaak3QJEQ=s100"
-                         onerror="handlePhotoError(this)"
-                         alt="Suresh Sir"
-                         class="w-5 h-5 rounded-full object-cover border border-slate-900/30 bg-slate-800">
-                    <span class="hidden sm:inline">Nursing Solution</span>
-                    <i id="promoChevron" class="fa-solid fa-chevron-up text-xs transition-transform duration-200"></i>
+                <!-- Focus Mode (Collapse/Expand Banners for Max Attendance Space) -->
+                <button onclick="toggleFocusMode()" id="focusModeBtn" title="अटेंडेंस स्क्रीन बड़ी/छोटी करें (Focus Mode)"
+                    class="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-teal-100 font-semibold px-2.5 py-1.5 rounded-xl text-xs border border-white/15 transition cursor-pointer">
+                    <i id="focusIcon" class="fa-solid fa-expand text-emerald-300"></i>
+                    <span class="hidden xl:inline" id="focusBtnLabel">Focus View</span>
                 </button>
 
                 <!-- Reload Portal Button -->
-                <button onclick="reloadIframe()" title="पोर्टल रीलोड करें (Reload Attendance Portal)"
-                    class="flex items-center gap-1.5 bg-white/15 hover:bg-white/25 text-white font-medium px-2.5 sm:px-3 py-2 rounded-xl text-xs sm:text-sm border border-white/20 transition active:scale-95 cursor-pointer">
+                <button onclick="reloadIframe()" title="अटेंडेंस पोर्टल रीलोड करें"
+                    class="flex items-center gap-1 bg-white/10 hover:bg-white/20 text-white font-semibold px-2.5 py-1.5 rounded-xl text-xs border border-white/15 transition active:scale-95 cursor-pointer">
                     <i id="reloadIcon" class="fa-solid fa-rotate-right"></i>
-                    <span class="hidden md:inline">Reload</span>
                 </button>
 
-                <!-- Open in New Tab Fallback Button -->
+                <!-- Open in New Tab Fallback -->
                 <a id="newTabLink"
                    href="https://script.google.com/macros/s/AKfycbyAonMVlw7QoKtHWRl7zh8-3IOWoRqpF_oNsNO0arPJbEg6C9ikSatKTguqwNM7UJvIPQ/exec" 
                    target="_blank" rel="noopener noreferrer"
                    title="नए टैब में खोलें (Open in New Tab)"
-                   class="flex items-center gap-1.5 bg-tealaccent-500 hover:bg-tealaccent-600 text-white font-semibold px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm shadow transition active:scale-95">
+                   class="flex items-center gap-1.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-2.5 sm:px-3 py-1.5 rounded-xl text-xs shadow transition active:scale-95">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    <span class="hidden sm:inline">New Tab</span>
+                    <span class="hidden md:inline">New Tab</span>
                 </a>
-
-                <!-- Help / Embed Info Modal Trigger -->
-                <button onclick="toggleHelpModal(true)" title="मदद / तकनीकी जानकारी"
-                    class="bg-white/10 hover:bg-white/20 text-sky-100 p-2 rounded-xl border border-white/15 transition cursor-pointer">
-                    <i class="fa-solid fa-circle-info text-sm sm:text-base"></i>
-                </button>
             </div>
         </div>
     </header>
 
-    <!-- ==================== 2. NURSING SOLUTION PROMOTIONAL BANNER ==================== -->
-    <section id="nursingSolutionBanner" class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white border-b border-teal-500/30 shadow-lg z-20 shrink-0 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+    <!-- ==================== 2. COLLAPSIBLE ENGAGEMENT & NURSING SOLUTION BAR ==================== -->
+    <section id="engagementBar" class="bg-gradient-to-r from-slate-900 via-teal-950 to-slate-950 text-white border-b border-emerald-500/30 shadow-md z-20 shrink-0 transition-all duration-300">
+        <div class="max-w-full mx-auto px-3 sm:px-5 py-2">
+            <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-2.5">
                 
-                <!-- Left Branding & Suresh Sir Photo -->
-                <div class="flex items-center gap-3.5">
-                    <!-- Suresh Sir Framed Profile Photo with Glowing Emerald/Teal Ring -->
-                    <div class="relative shrink-0 group" title="यदि फोटो न दिखे तो Google Drive फाइल को 'Anyone with the link' पर सेट करें">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr from-emerald-400 via-teal-400 to-sky-400 p-0.5 shadow-lg shadow-teal-500/25">
+                <!-- Left: Suresh Sir Profile + Nursing Solution (@NsoGroup88) Promotion -->
+                <div class="flex items-center gap-3 shrink-0">
+                    <div class="relative shrink-0">
+                        <div class="w-12 h-12 sm:w-13 sm:h-13 rounded-2xl bg-gradient-to-tr from-emerald-400 via-teal-300 to-amber-300 p-0.5 shadow-lg shadow-emerald-500/25">
                             <img id="sureshSirPhoto"
-                                 src="https://lh3.googleusercontent.com/d/1SNjko8U7JNqFYGgSnWSH6TrUaak3QJEQ=s400"
+                                 src="https://lh3.googleusercontent.com/d/1SNjko8U7JNqFYGgSnWSH6TrUaak3QJEQ"
                                  onerror="handlePhotoError(this)"
-                                 alt="Suresh Sir - Nursing Solution"
+                                 alt="Suresh Sir - Nursing Solution (@NsoGroup88)"
                                  class="w-full h-full object-cover rounded-[14px] bg-slate-900">
                         </div>
-                        <!-- Verified Educator Checkmark Badge -->
-                        <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-slate-950 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full border-2 border-slate-950 flex items-center gap-0.5 shadow">
-                            <i class="fa-solid fa-circle-check text-[9px]"></i> TUTOR
+                        <span class="absolute -bottom-1 -right-1 bg-emerald-400 text-slate-950 text-[8px] font-extrabold px-1.5 py-0.2 rounded-full border border-slate-950 shadow">
+                            TUTOR
                         </span>
                     </div>
 
                     <div>
-                        <div class="flex flex-wrap items-center gap-2">
-                            <span class="text-sm sm:text-base font-extrabold bg-gradient-to-r from-amber-300 via-yellow-200 to-teal-300 bg-clip-text text-transparent">
-                                Nursing Solution (@nursingsolution88)
-                            </span>
-                            <span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                                <i class="fa-solid fa-user-graduate text-[10px]"></i> Suresh Sir • B.Sc. Nursing Tutor
+                        <div class="flex flex-wrap items-center gap-1.5">
+                            <a href="https://www.youtube.com/@NsoGroup88" target="_blank" rel="noopener noreferrer"
+                               class="text-xs sm:text-sm md:text-base font-extrabold bg-gradient-to-r from-amber-300 via-yellow-200 to-emerald-300 bg-clip-text text-transparent hover:underline">
+                                Nursing Solution (@NsoGroup88)
+                            </a>
+                            <span class="text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                                Suresh Sir • B.Sc. Nursing Tutor
                             </span>
                         </div>
-                        <p class="text-xs sm:text-sm text-slate-300 mt-0.5 leading-snug">
-                            <span class="text-teal-300 font-semibold">NORCET, RRB, CHO एवं RUHS B.Sc. Nursing</span> परीक्षाओं की बेहतरीन तैयारी, डेली क्विज़ व निःशुल्क क्लासेस के लिए जुड़ें!
+                        <p class="text-[11px] sm:text-xs text-slate-300 mt-0.5">
+                            <span class="text-emerald-300 font-semibold">NORCET, RRB, CHO &amp; RUHS B.Sc. Nursing</span> — डेली क्लिनिकल MCQs व फ्री लाइव क्लासेस!
                         </p>
                     </div>
                 </div>
 
-                <!-- Right Action Buttons -->
-                <div class="flex flex-wrap items-center gap-2 w-full md:w-auto justify-end">
-                    <a href="https://www.youtube.com/@nursingsolution88" target="_blank" rel="noopener noreferrer"
-                       class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-xl shadow-md shadow-red-950/50 transition transform hover:-translate-y-0.5">
-                        <i class="fa-brands fa-youtube text-base"></i>
-                        <span>YouTube चैनल सब्सक्राइब करें</span>
-                    </a>
-                    
-                    <button onclick="togglePromoBanner()" 
-                        class="inline-flex items-center justify-center gap-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs font-medium px-3 py-2 rounded-xl border border-white/15 transition cursor-pointer"
-                        title="अटेंडेंस स्क्रीन बड़ी करने के लिए बैनर छुपाएं">
-                        <i class="fa-solid fa-compress"></i>
-                        <span>Hide</span>
+                <!-- Center: Interactive Clinical Nursing Pearl / Flashcard Ticker -->
+                <div onclick="nextPearl()" title="अगला क्लिनिकल पॉइंट देखने के लिए क्लिक करें (Click for Next Clinical Pearl)"
+                     class="flex-1 bg-white/5 hover:bg-white/10 border border-teal-400/25 rounded-xl px-3 py-1.5 flex items-center justify-between gap-2.5 cursor-pointer transition group">
+                    <div class="flex items-center gap-2.5 min-w-0">
+                        <span class="shrink-0 bg-teal-500/20 text-teal-300 border border-teal-400/30 text-[10px] font-extrabold px-2 py-0.5 rounded-lg uppercase tracking-wider">
+                            <i class="fa-solid fa-lightbulb text-amber-300 mr-1"></i>Clinical Pearl
+                        </span>
+                        <p id="clinicalPearlText" class="text-xs sm:text-[13px] text-slate-100 font-medium truncate">
+                            Normal Serum Potassium (K⁺): 3.5 – 5.0 mEq/L (Hyperkalemia &gt; 5.0 causes tall tented T-waves on ECG).
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-1.5 shrink-0 text-[11px] text-emerald-300 font-bold">
+                        <span id="pearlCounter" class="hidden sm:inline text-slate-400 font-normal">1/8</span>
+                        <span class="bg-emerald-500/20 group-hover:bg-emerald-500/30 px-2 py-0.5 rounded-lg border border-emerald-400/30">
+                            Next <i class="fa-solid fa-forward-step text-[10px]"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Right: Quick Study Hub, Study Timer & YouTube Subscribe -->
+                <div class="flex items-center gap-1.5 sm:gap-2 shrink-0 justify-end flex-wrap">
+                    <!-- Mini Pomodoro Study Timer Pill -->
+                    <button onclick="toggleStudyTimer()" id="pomodoroBtn" title="25-Min Nursing Study Focus Timer"
+                        class="inline-flex items-center gap-1.5 bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-200 font-bold text-xs px-2.5 py-1.5 rounded-xl border border-indigo-400/35 transition cursor-pointer">
+                        <i class="fa-solid fa-stopwatch text-indigo-300"></i>
+                        <span id="pomodoroDisplay">25:00</span>
                     </button>
+
+                    <!-- Flashcards & Study Hub Button -->
+                    <button onclick="openStudyHub('cards')"
+                        class="inline-flex items-center gap-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-200 font-bold text-xs px-2.5 py-1.5 rounded-xl border border-emerald-400/35 transition cursor-pointer">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>Cheat Cards</span>
+                    </button>
+
+                    <!-- YouTube Subscribe CTA -->
+                    <a href="https://www.youtube.com/@NsoGroup88?sub_confirmation=1" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-1.5 bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs px-3 py-1.5 rounded-xl shadow-md shadow-red-950/60 transition transform hover:-translate-y-0.5">
+                        <i class="fa-brands fa-youtube text-sm"></i>
+                        <span>Subscribe @NsoGroup88</span>
+                    </a>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- ==================== 3. MAIN FULL-HEIGHT INTERACTIVE PORTAL CONTAINER ==================== -->
+    <!-- ==================== 3. MAIN FULL-HEIGHT ATTENDANCE PORTAL CONTAINER ==================== -->
     <main class="relative flex-1 w-full bg-slate-200 overflow-hidden flex flex-col">
         
-        <!-- Smooth Loading Spinner Overlay -->
+        <!-- Smooth Loading Overlay -->
         <div id="loaderOverlay" class="absolute inset-0 bg-slate-50/95 backdrop-blur-sm z-10 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-500">
-            <div class="relative w-16 h-16 mb-4">
-                <div class="absolute inset-0 rounded-full border-4 border-medical-100"></div>
-                <div class="absolute inset-0 rounded-full border-4 border-tealaccent-600 border-t-transparent animate-spin"></div>
+            <div class="relative w-16 h-16 mb-3">
+                <div class="absolute inset-0 rounded-full border-4 border-teal-100"></div>
+                <div class="absolute inset-0 rounded-full border-4 border-teal-600 border-t-transparent animate-spin"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
-                    <i class="fa-solid fa-heart-pulse text-medical-700 text-xl animate-pulse"></i>
+                    <i class="fa-solid fa-heart-pulse text-emerald-600 text-xl animate-pulse"></i>
                 </div>
             </div>
-            <h2 class="text-lg sm:text-xl font-bold text-slate-800">
+            <h2 class="text-base sm:text-lg font-extrabold text-slate-800">
                 संजीवनी कॉलेज अटेंडेंस पोर्टल लोड हो रहा है...
             </h2>
-            <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-md">
-                Connecting securely to Sanjeevani College of Nursing Attendance Web App. Please wait a moment.
+            <p class="text-xs text-slate-500 mt-1 max-w-md">
+                Sanjeevani College of Nursing, Udaipur • Attendance दर्ज करने के बाद ऊपर दिए गए <strong>Daily MCQ Quiz</strong> से अपनी NORCET तैयारी जांचें!
             </p>
         </div>
 
-        <!-- Subtle Top Notice Bar for Direct Access / Troubleshooting -->
-        <div id="fallbackStrip" class="bg-sky-50 border-b border-sky-200 px-3 py-1.5 text-xs text-sky-900 flex flex-wrap items-center justify-between gap-2 shrink-0">
+        <!-- Compact Status & Quick Action Strip -->
+        <div class="bg-teal-50/90 border-b border-teal-200/80 px-3 py-1 text-[11px] sm:text-xs text-teal-950 flex flex-wrap items-center justify-between gap-2 shrink-0">
             <div class="flex items-center gap-2">
                 <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
                 <span>
-                    <strong id="activePortalLabel">Active: Portal 1 (Primary)</strong> — यदि पेज खाली दिखे तो <strong>Portal 2</strong> या <strong>"New Tab"</strong> बटन चुनें।
+                    <strong id="activePortalLabel">Active: Portal 1 (Primary)</strong>
+                    <span class="hidden sm:inline text-teal-800"> • यदि पोर्टल न खुले तो <strong>Portal 2</strong> या <strong>New Tab</strong> चुनें।</span>
                 </span>
             </div>
-            <button onclick="toggleHelpModal(true)" class="text-medical-700 hover:text-medical-900 font-semibold underline cursor-pointer">
-                तकनीकी समाधान देखें (X-Frame / Drive Photo Info)
-            </button>
+            <div class="flex items-center gap-3">
+                <span class="hidden md:inline-flex items-center gap-1.5 text-slate-600 font-medium">
+                    <i class="fa-regular fa-clock text-teal-700"></i>
+                    <span id="liveClock">--:--</span>
+                </span>
+                <button onclick="openStudyHub('quiz')" class="text-emerald-700 hover:text-emerald-900 font-extrabold underline cursor-pointer">
+                    <i class="fa-solid fa-bolt text-amber-500"></i> Today's 6 NORCET MCQs
+                </button>
+                <button onclick="toggleHelpModal(true)" class="text-teal-700 hover:text-teal-950 font-semibold underline cursor-pointer">
+                    Help / Direct Links
+                </button>
+            </div>
         </div>
 
-        <!-- Embedded Google Apps Script Iframe (Starts with Primary URL) -->
+        <!-- Embedded Google Apps Script Attendance Iframe (Takes ~80%+ Viewport Height) -->
         <iframe 
             id="attendanceFrame"
             src="https://script.google.com/macros/s/AKfycbyAonMVlw7QoKtHWRl7zh8-3IOWoRqpF_oNsNO0arPJbEg6C9ikSatKTguqwNM7UJvIPQ/exec"
@@ -231,28 +307,162 @@
     </main>
 
     <!-- ==================== 4. COMPACT FOOTER ==================== -->
-    <footer class="bg-white border-t border-slate-200 px-4 py-1.5 text-[11px] sm:text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2 shrink-0 z-20">
+    <footer class="bg-white border-t border-slate-200 px-3 sm:px-5 py-1 text-[11px] text-slate-600 flex flex-wrap items-center justify-between gap-2 shrink-0 z-20">
         <div class="flex items-center gap-2">
-            <span class="font-semibold text-medical-800">Sanjeevani College Attendance</span>
-            <span class="hidden sm:inline text-slate-400">|</span>
-            <span class="hidden sm:inline">संजीवनी कॉलेज ऑफ नर्सिंग</span>
+            <span class="font-bold text-teal-900">&copy; 2026 Sanjeevani College Attendance</span>
+            <span class="hidden sm:inline text-slate-300">|</span>
+            <span class="hidden sm:inline">Sanjeevani College of Nursing, Udaipur</span>
         </div>
         <div class="flex items-center gap-2">
-            <span>Created by <strong>Suresh Sir</strong> •</span>
-            <a href="https://www.youtube.com/@nursingsolution88" target="_blank" rel="noopener noreferrer" 
-               class="font-bold text-indigo-700 hover:text-red-600 transition flex items-center gap-1">
-                <i class="fa-brands fa-youtube text-red-600"></i> Nursing Solution (@nursingsolution88)
+            <span>Mentored by <strong>Suresh Sir</strong> •</span>
+            <a href="https://www.youtube.com/@NsoGroup88" target="_blank" rel="noopener noreferrer" 
+               class="font-extrabold text-teal-800 hover:text-red-600 transition flex items-center gap-1">
+                <i class="fa-brands fa-youtube text-red-600"></i> Nursing Solution (@NsoGroup88)
             </a>
         </div>
     </footer>
 
-    <!-- ==================== 5. FALLBACK & TECHNICAL HELP MODAL ==================== -->
-    <div id="helpModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden animate-fadeIn">
-            <div class="bg-gradient-to-r from-medical-800 to-tealaccent-700 px-5 py-4 text-white flex items-center justify-between">
+    <!-- ==================== 5. INTERACTIVE STUDENT STUDY HUB MODAL (MCQ QUIZ + CHEAT CARDS + STREAK) ==================== -->
+    <div id="studyHubModal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl border border-teal-500/30 overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header with Suresh Sir Profile -->
+            <div class="bg-gradient-to-r from-slate-950 via-medical-900 to-emerald-900 px-5 py-4 text-white flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                    <img src="https://lh3.googleusercontent.com/d/1SNjko8U7JNqFYGgSnWSH6TrUaak3QJEQ"
+                         onerror="handlePhotoError(this)"
+                         alt="Suresh Sir"
+                         class="w-11 h-11 rounded-2xl object-cover border-2 border-emerald-400 bg-slate-800">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="font-extrabold text-base sm:text-lg text-white">Nursing Solution Student Hub</h3>
+                            <span class="text-[10px] font-extrabold bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full">@NsoGroup88</span>
+                        </div>
+                        <p class="text-xs text-teal-200">Suresh Sir • B.Sc. Nursing Tutor • Sanjeevani College of Nursing, Udaipur</p>
+                    </div>
+                </div>
+                <button onclick="closeStudyHub()" class="bg-white/10 hover:bg-white/20 text-white w-9 h-9 rounded-xl flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Tabs inside Study Hub -->
+            <div class="bg-slate-100 px-4 py-2 border-b border-slate-200 flex items-center gap-2 shrink-0 overflow-x-auto">
+                <button onclick="switchHubTab('quiz')" id="tabQuiz"
+                    class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-extrabold bg-teal-700 text-white shadow transition cursor-pointer flex items-center gap-1.5 shrink-0">
+                    <i class="fa-solid fa-brain"></i> NORCET / RUHS Quiz (6 MCQs)
+                </button>
+                <button onclick="switchHubTab('cards')" id="tabCards"
+                    class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-slate-700 hover:bg-slate-200 transition cursor-pointer flex items-center gap-1.5 shrink-0">
+                    <i class="fa-solid fa-notes-medical"></i> Golden Cheat-Cards
+                </button>
+                <button onclick="switchHubTab('streak')" id="tabStreak"
+                    class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-slate-700 hover:bg-slate-200 transition cursor-pointer flex items-center gap-1.5 shrink-0">
+                    <i class="fa-solid fa-award text-amber-600"></i> My Attendance Streak
+                </button>
+            </div>
+
+            <!-- Modal Body Content -->
+            <div class="p-4 sm:p-6 overflow-y-auto flex-1 space-y-4">
+                
+                <!-- TAB 1: DAILY CLINICAL MCQ QUIZ -->
+                <div id="hubContentQuiz" class="space-y-4">
+                    <div class="flex items-center justify-between bg-teal-50 border border-teal-200 px-3.5 py-2 rounded-2xl">
+                        <span class="text-xs font-bold text-teal-900" id="quizProgressLabel">Question 1 of 6</span>
+                        <span class="text-xs font-extrabold text-emerald-700" id="quizLiveScoreText">Score: 0 / 6</span>
+                    </div>
+
+                    <div id="quizQuestionCard" class="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 space-y-3.5">
+                        <span id="quizTopicTag" class="inline-block text-[11px] font-bold bg-indigo-100 text-indigo-800 px-2.5 py-0.5 rounded-full">
+                            Medical-Surgical Nursing
+                        </span>
+                        <h4 id="quizQuestionText" class="text-sm sm:text-base font-extrabold text-slate-900 leading-snug">
+                            Loading question...
+                        </h4>
+
+                        <!-- Options Container -->
+                        <div id="quizOptionsContainer" class="space-y-2 pt-1"></div>
+
+                        <!-- Instant Rationale Box (Hidden until answered) -->
+                        <div id="quizRationaleBox" class="hidden rounded-2xl p-3.5 border text-xs sm:text-sm leading-relaxed"></div>
+                    </div>
+
+                    <!-- Quiz Footer Controls -->
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                        <button onclick="resetQuiz()" class="text-xs font-bold text-slate-500 hover:text-slate-800 underline cursor-pointer">
+                            <i class="fa-solid fa-rotate-left mr-1"></i> Restart Quiz
+                        </button>
+                        <div class="flex items-center gap-2">
+                            <a href="https://www.youtube.com/@NsoGroup88" target="_blank" rel="noopener noreferrer"
+                               class="inline-flex items-center gap-1.5 bg-red-50 hover:bg-red-100 text-red-700 font-bold text-xs px-3 py-2 rounded-xl border border-red-200 transition">
+                                <i class="fa-brands fa-youtube"></i> Video Class
+                            </a>
+                            <button onclick="nextQuizQuestion()" id="nextQuestionBtn"
+                                class="bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-xl shadow transition cursor-pointer">
+                                Next Question <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: HIGH-YIELD NURSING CHEAT-CARDS -->
+                <div id="hubContentCards" class="hidden space-y-3">
+                    <p class="text-xs text-slate-600">
+                        NORCET, CHO, RRB और यूनिवर्सिटी परीक्षाओं के लिए सबसे महत्वपूर्ण क्लिनिकल पॉइंट्स (Suresh Sir द्वारा संकलित):
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="cheatCardsGrid"></div>
+                </div>
+
+                <!-- TAB 3: STUDENT ATTENDANCE STREAK & RANK -->
+                <div id="hubContentStreak" class="hidden space-y-4 text-center py-2">
+                    <div class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-tr from-amber-400 to-orange-500 text-white shadow-xl shadow-amber-500/30 animate-float">
+                        <i class="fa-solid fa-fire text-4xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-extrabold text-slate-900" id="streakModalTitle">1 Day Active Streak!</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                            आपका वर्तमान रैंक: <strong class="text-teal-700" id="streakModalRank">Nursing Cadet</strong>
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2.5 text-left">
+                        <div class="bg-slate-50 border border-slate-200 p-3 rounded-2xl">
+                            <span class="text-[10px] font-bold uppercase text-slate-400">1-3 Days</span>
+                            <p class="text-xs font-extrabold text-slate-800 mt-0.5">Nursing Cadet</p>
+                        </div>
+                        <div class="bg-teal-50 border border-teal-200 p-3 rounded-2xl">
+                            <span class="text-[10px] font-bold uppercase text-teal-600">4-14 Days</span>
+                            <p class="text-xs font-extrabold text-teal-900 mt-0.5">Clinical Pro</p>
+                        </div>
+                        <div class="bg-amber-50 border border-amber-200 p-3 rounded-2xl">
+                            <span class="text-[10px] font-bold uppercase text-amber-600">15+ Days</span>
+                            <p class="text-xs font-extrabold text-amber-900 mt-0.5">Nursing Officer</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-slate-900 to-teal-950 text-white p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
+                        <div>
+                            <p class="text-sm font-extrabold text-amber-300">Suresh Sir के साथ रोज़ाना सीखें!</p>
+                            <p class="text-xs text-slate-300">YouTube पर @NsoGroup88 सब्सक्राइब करें और अपने दोस्तों को भी शेयर करें।</p>
+                        </div>
+                        <a href="https://www.youtube.com/@NsoGroup88?sub_confirmation=1" target="_blank" rel="noopener noreferrer"
+                           class="shrink-0 bg-red-600 hover:bg-red-500 text-white font-extrabold text-xs px-4 py-2.5 rounded-xl shadow transition">
+                            <i class="fa-brands fa-youtube mr-1"></i> Subscribe Now
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 6. TECHNICAL HELP & DIRECT PORTAL MODAL ==================== -->
+    <div id="helpModal" class="fixed inset-0 bg-slate-950/65 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden">
+            <div class="bg-gradient-to-r from-medical-900 to-emerald-800 px-5 py-4 text-white flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
-                    <i class="fa-solid fa-shield-halved text-xl text-teal-200"></i>
-                    <h3 class="font-bold text-base sm:text-lg">पोर्टल सहायता एवं तकनीकी जानकारी</h3>
+                    <i class="fa-solid fa-shield-halved text-xl text-emerald-300"></i>
+                    <h3 class="font-bold text-base sm:text-lg">पोर्टल सहायता एवं डायरेक्ट लिंक्स</h3>
                 </div>
                 <button onclick="toggleHelpModal(false)" class="text-white/80 hover:text-white p-1 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-xmark text-lg"></i>
@@ -265,43 +475,41 @@
                         <i class="fa-solid fa-triangle-exclamation mr-1"></i> यदि अटेंडेंस पेज अंदर लोड न हो (Blank Screen):
                     </p>
                     <p class="text-xs sm:text-sm text-amber-800">
-                        Google Apps Script सुरक्षा कारणों से <code>X-Frame-Options: SAMEORIGIN</code> सेट करता है, जिससे बाहरी HTML पेज में iframe ब्लॉक हो सकता है।
+                        कुछ मोबाइल ब्राउज़र या प्राइवेट मोड में Google Apps Script iframe ब्लॉक हो सकता है। नीचे दिए गए डायरेक्ट बटन से तुरंत अटेंडेंस खोलें:
                     </p>
                 </div>
 
                 <div>
-                    <h4 class="font-bold text-slate-900 mb-1.5">1. दोनों पोर्टल लिंक्स सीधे खोलें (Direct Links):</h4>
+                    <h4 class="font-bold text-slate-900 mb-2">1. अटेंडेंस पोर्टल डायरेक्ट खोलें (Direct Launch):</h4>
                     <div class="flex flex-wrap gap-2">
                         <a href="https://script.google.com/macros/s/AKfycbyAonMVlw7QoKtHWRl7zh8-3IOWoRqpF_oNsNO0arPJbEg6C9ikSatKTguqwNM7UJvIPQ/exec" 
                            target="_blank" rel="noopener noreferrer"
-                           class="inline-flex items-center gap-1.5 bg-medical-700 hover:bg-medical-800 text-white font-semibold px-3.5 py-2 rounded-xl text-xs shadow transition">
+                           class="inline-flex items-center gap-1.5 bg-teal-700 hover:bg-teal-800 text-white font-bold px-3.5 py-2 rounded-xl text-xs shadow transition">
                             <i class="fa-solid fa-external-link-alt"></i> Portal 1 (Primary) खोलें
                         </a>
                         <a href="https://script.google.com/macros/s/AKfycbwg2NonBJUXWIjj5aWdg0GvfxljOs9qJH4rzhqYUDJZo2crc6Vgxadt6oGr0DGLnIfY1w/exec" 
                            target="_blank" rel="noopener noreferrer"
-                           class="inline-flex items-center gap-1.5 bg-tealaccent-600 hover:bg-tealaccent-700 text-white font-semibold px-3.5 py-2 rounded-xl text-xs shadow transition">
+                           class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3.5 py-2 rounded-xl text-xs shadow transition">
                             <i class="fa-solid fa-external-link-alt"></i> Portal 2 (Secondary) खोलें
                         </a>
                     </div>
                 </div>
 
-                <div class="bg-sky-50 border border-sky-200 p-3 rounded-xl text-xs text-sky-900">
-                    <p class="font-bold mb-1"><i class="fa-brands fa-google-drive mr-1 text-sky-700"></i> Google Drive फोटो टिप:</p>
-                    <p>यदि बैनर में सुरेश सर की फोटो की जगह "SS" आइकन दिखे, तो Google Drive में उस फोटो पर Right-Click करके <strong>Share &rarr; General access &rarr; "Anyone with the link"</strong> कर दें।</p>
-                </div>
-
-                <div class="border-t border-slate-200 pt-3">
-                    <h4 class="font-bold text-slate-900 mb-1.5">2. Admin के लिए समाधान (Apps Script में स्थायी सुधार):</h4>
-                    <pre class="bg-slate-900 text-teal-300 p-3 rounded-xl text-xs overflow-x-auto font-mono">function doGet(e) {
-  return HtmlService.createHtmlOutputFromFile('Index')
-    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
-}</pre>
+                <div class="bg-teal-50 border border-teal-200 p-3.5 rounded-xl flex items-center justify-between gap-3">
+                    <div>
+                        <p class="font-bold text-teal-950 text-xs sm:text-sm">Nursing Solution (@NsoGroup88)</p>
+                        <p class="text-xs text-teal-800">Suresh Sir • B.Sc. Nursing Tutor • Sanjeevani College of Nursing, Udaipur</p>
+                    </div>
+                    <a href="https://www.youtube.com/@NsoGroup88" target="_blank" rel="noopener noreferrer"
+                       class="shrink-0 inline-flex items-center gap-1.5 bg-red-600 hover:bg-red-500 text-white font-bold px-3 py-2 rounded-xl text-xs shadow transition">
+                        <i class="fa-brands fa-youtube"></i> YouTube
+                    </a>
                 </div>
             </div>
 
             <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end">
-                <button onclick="toggleHelpModal(false)" class="bg-slate-800 hover:bg-slate-900 text-white font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm transition cursor-pointer">
-                    ठीक है, समझ गया (Close)
+                <button onclick="toggleHelpModal(false)" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm transition cursor-pointer">
+                    ठीक है, बंद करें (Close)
                 </button>
             </div>
         </div>
@@ -309,40 +517,347 @@
 
     <!-- ==================== JAVASCRIPT LOGIC ==================== -->
     <script>
+        // 1. PORTAL CONFIGURATION
         const PORTAL_URLS = {
             1: "https://script.google.com/macros/s/AKfycbyAonMVlw7QoKtHWRl7zh8-3IOWoRqpF_oNsNO0arPJbEg6C9ikSatKTguqwNM7UJvIPQ/exec",
             2: "https://script.google.com/macros/s/AKfycbwg2NonBJUXWIjj5aWdg0GvfxljOs9qJH4rzhqYUDJZo2crc6Vgxadt6oGr0DGLnIfY1w/exec"
         };
         let activePortal = 1;
-        let isPromoVisible = true;
+        let isFocusMode = false;
 
-        // Multi-step Google Drive Photo Fallback Handler
+        // 2. SURESH SIR PHOTO FALLBACK CHAIN
         function handlePhotoError(imgElement) {
             const step = parseInt(imgElement.dataset.fallbackStep || "0", 10);
             if (step === 0) {
-                // First fallback: Google Drive Thumbnail API
                 imgElement.dataset.fallbackStep = "1";
                 imgElement.src = "https://drive.google.com/thumbnail?id=1SNjko8U7JNqFYGgSnWSH6TrUaak3QJEQ&sz=w400";
             } else if (step === 1) {
-                // Second fallback: Clean SVG "SS" (Suresh Sir) Medical Avatar
                 imgElement.dataset.fallbackStep = "2";
                 const svgAvatar = `
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                         <defs>
-                            <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#0d9488"/>
-                                <stop offset="100%" stop-color="#0369a1"/>
+                            <linearGradient id="ssGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#059669"/>
+                                <stop offset="100%" stop-color="#0f766e"/>
                             </linearGradient>
                         </defs>
-                        <rect width="100" height="100" fill="url(#bgGrad)"/>
-                        <text x="50" y="58" font-family="Inter, sans-serif" font-size="38" font-weight="800" fill="#ffffff" text-anchor="middle">SS</text>
+                        <rect width="100" height="100" fill="url(#ssGrad)"/>
+                        <text x="50" y="61" font-family="Plus Jakarta Sans, Inter, sans-serif" font-size="38" font-weight="800" fill="#ffffff" text-anchor="middle">SS</text>
                     </svg>
                 `.trim();
                 imgElement.src = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svgAvatar);
             }
         }
 
-        // Switch between Portal 1 (Primary) and Portal 2 (Secondary)
+        // 3. CLINICAL PEARLS TICKER DATA
+        const CLINICAL_PEARLS = [
+            "Normal Serum Potassium (K⁺): 3.5 – 5.0 mEq/L (Hyperkalemia > 5.0 causes tall tented T-waves on ECG).",
+            "Antidote for Heparin overdose is Protamine Sulfate; Antidote for Warfarin is Vitamin K (Phytonadione).",
+            "Normal Glasgow Coma Scale (GCS) score is 15 (Max); Coma is defined as GCS ≤ 8 ('Intubate below 8').",
+            "Digoxin Toxicity early sign: Anorexia, nausea, yellow-green vision (Xanthopsia); Check apical pulse for 1 full minute (< 60 bpm hold).",
+            "Normal ABG Values: pH 7.35–7.45 | PaCO₂ 35–45 mmHg | HCO₃⁻ 22–26 mEq/L (ROME: Respiratory Opposite, Metabolic Equal).",
+            "Post-Lumbar Puncture Position: Supine / Flat for 6–8 hours to prevent post-dural puncture headache.",
+            "Antidote for Magnesium Sulfate (MgSO₄) toxicity in Eclampsia is 10% Calcium Gluconate (1g IV).",
+            "Universal Blood Donor: O Negative (O⁻) | Universal Blood Recipient: AB Positive (AB⁺)."
+        ];
+        let pearlIndex = 0;
+
+        function nextPearl() {
+            pearlIndex = (pearlIndex + 1) % CLINICAL_PEARLS.length;
+            const textEl = document.getElementById('clinicalPearlText');
+            const countEl = document.getElementById('pearlCounter');
+            if (textEl) textEl.textContent = CLINICAL_PEARLS[pearlIndex];
+            if (countEl) countEl.textContent = `${pearlIndex + 1}/${CLINICAL_PEARLS.length}`;
+        }
+        // Auto-advance pearl every 9 seconds so students see fresh facts
+        setInterval(nextPearl, 9000);
+
+        // 4. HIGH-YIELD NORCET / RUHS CLINICAL QUIZ DATA (6 QUESTIONS)
+        const NURSING_QUIZ = [
+            {
+                topic: "Pharmacology • NORCET High-Yield",
+                question: "1. A patient receiving Magnesium Sulfate (MgSO₄) for severe pre-eclampsia develops absent patellar reflexes and respiratory rate of 10/min. Which antidote should the nurse prepare immediately?",
+                options: [
+                    "Naloxone Hydrochloride",
+                    "10% Calcium Gluconate",
+                    "Protamine Sulfate",
+                    "Atropine Sulfate"
+                ],
+                correct: 1,
+                rationale: "सही उत्तर: 10% Calcium Gluconate. MgSO₄ टॉक्सिसिटी के शुरुआती लक्षण Deep Tendon Reflexes (Patellar) का गायब होना और Respiratory Depression (<12/min) हैं।"
+            },
+            {
+                topic: "Medical-Surgical Nursing • ECG",
+                question: "2. Which ECG change is the earliest classic hallmark of Hyperkalemia (Serum K⁺ > 5.5 mEq/L)?",
+                options: [
+                    "Prominent U-waves",
+                    "Tall, peaked (tented) T-waves",
+                    "ST-segment depression",
+                    "Prolonged QT interval"
+                ],
+                correct: 1,
+                rationale: "सही उत्तर: Tall, peaked (tented) T-waves. जबकि Hypokalemia में flattened T-wave और prominent U-wave दिखाई देती है।"
+            },
+            {
+                topic: "Fundamentals of Nursing • Positioning",
+                question: "3. Which position is recommended for a patient immediately after a Liver Biopsy to prevent hemorrhage?",
+                options: [
+                    "Left lateral position",
+                    "Right lateral position (lying on right side)",
+                    "High Fowler's position",
+                    "Trendelenburg position"
+                ],
+                correct: 1,
+                rationale: "सही उत्तर: Right lateral position. दाईं करवट (Right side) लिटाने से लिवर कैप्सूल पर सीधा दबाव पड़ता है जिससे ब्लीडिंग रुकती है।"
+            },
+            {
+                topic: "Critical Care • GCS Score",
+                question: "4. A trauma patient opens eyes to pain (2), utters incomprehensible sounds (2), and shows abnormal flexion/decorticate posturing (3). What is the total Glasgow Coma Scale (GCS) score?",
+                options: [
+                    "GCS 6",
+                    "GCS 7",
+                    "GCS 8",
+                    "GCS 9"
+                ],
+                correct: 1,
+                rationale: "सही उत्तर: GCS 7 (E2 + V2 + M3 = 7). चूंकि स्कोर 8 से कम है, मरीज़ को तुरंत Airway protection (Intubation) की आवश्यकता होती है।"
+            },
+            {
+                topic: "OBG Nursing • Labor",
+                question: "5. Active management of the third stage of labor (AMTSL) includes all of the following EXCEPT:",
+                options: [
+                    "Administration of Oxytocin 10 IU IM within 1 minute of birth",
+                    "Controlled cord traction (Brandt-Andrews maneuver)",
+                    "Uterine massage after delivery of placenta",
+                    "Immediate fundal pressure before placental separation"
+                ],
+                correct: 3,
+                rationale: "सही उत्तर: Immediate fundal pressure. प्लेसेंटा अलग होने से पहले Fundal pressure देने से Uterine Inversion हो सकता है।"
+            },
+            {
+                topic: "Pediatric Nursing • Immunization",
+                question: "6. At what age is the first dose of Measles-Rubella (MR) vaccine administered under the National Immunization Schedule (NIS) in India?",
+                options: [
+                    "At Birth",
+                    "6 Weeks",
+                    "Completed 9 Months (9–12 months)",
+                    "16–24 Months"
+                ],
+                correct: 2,
+                rationale: "सही उत्तर: 9 Months (0.5 mL Subcutaneous in Right Upper Arm) के साथ Vitamin A (1 Lakh IU) की पहली खुराक दी जाती है।"
+            }
+        ];
+
+        let currentQuizIdx = 0;
+        let quizScore = 0;
+        let answeredQuestions = {};
+
+        function renderQuizQuestion() {
+            const q = NURSING_QUIZ[currentQuizIdx];
+            document.getElementById('quizProgressLabel').textContent = `Question ${currentQuizIdx + 1} of ${NURSING_QUIZ.length}`;
+            document.getElementById('quizLiveScoreText').textContent = `Score: ${quizScore} / ${NURSING_QUIZ.length}`;
+            document.getElementById('quizScorePill').textContent = `${quizScore}/${NURSING_QUIZ.length}`;
+            document.getElementById('quizTopicTag').textContent = q.topic;
+            document.getElementById('quizQuestionText').textContent = q.question;
+
+            const optionsContainer = document.getElementById('quizOptionsContainer');
+            const rationaleBox = document.getElementById('quizRationaleBox');
+            optionsContainer.innerHTML = '';
+
+            const userChoice = answeredQuestions[currentQuizIdx];
+            const isAnswered = userChoice !== undefined;
+
+            q.options.forEach((optText, idx) => {
+                const btn = document.createElement('button');
+                let btnClasses = "w-full text-left px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition flex items-center justify-between gap-2 cursor-pointer ";
+
+                if (!isAnswered) {
+                    btnClasses += "bg-white hover:bg-teal-50 border-slate-200 hover:border-teal-400 text-slate-800";
+                } else if (idx === q.correct) {
+                    btnClasses += "bg-emerald-50 border-emerald-500 text-emerald-950 font-bold";
+                } else if (idx === userChoice && idx !== q.correct) {
+                    btnClasses += "bg-red-50 border-red-400 text-red-900";
+                } else {
+                    btnClasses += "bg-white/60 border-slate-200 text-slate-400";
+                }
+
+                btn.className = btnClasses;
+                btn.disabled = isAnswered;
+                btn.onclick = () => selectQuizOption(idx);
+
+                const letter = String.fromCharCode(65 + idx);
+                let statusIcon = '';
+                if (isAnswered) {
+                    if (idx === q.correct) statusIcon = '<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i>';
+                    else if (idx === userChoice) statusIcon = '<i class="fa-solid fa-circle-xmark text-red-500 text-base"></i>';
+                }
+
+                btn.innerHTML = `<span><strong class="mr-2 text-teal-700">${letter}.</strong>${optText}</span>${statusIcon}`;
+                optionsContainer.appendChild(btn);
+            });
+
+            if (isAnswered) {
+                const isRight = userChoice === q.correct;
+                rationaleBox.className = `rounded-2xl p-3.5 border text-xs sm:text-sm leading-relaxed ${
+                    isRight ? 'bg-emerald-50/90 border-emerald-300 text-emerald-950' : 'bg-amber-50 border-amber-300 text-amber-950'
+                }`;
+                rationaleBox.innerHTML = `<p class="font-extrabold mb-1">${isRight ? '🎉 बिल्कुल सही जवाब!' : '💡 व्याख्या (Clinical Rationale):'}</p><p>${q.rationale}</p>`;
+                rationaleBox.classList.remove('hidden');
+            } else {
+                rationaleBox.classList.add('hidden');
+            }
+
+            const nextBtn = document.getElementById('nextQuestionBtn');
+            nextBtn.innerHTML = currentQuizIdx === NURSING_QUIZ.length - 1
+                ? 'Finish & View Cards <i class="fa-solid fa-check ml-1"></i>'
+                : 'Next Question <i class="fa-solid fa-arrow-right ml-1"></i>';
+        }
+
+        function selectQuizOption(selectedIdx) {
+            if (answeredQuestions[currentQuizIdx] !== undefined) return;
+            answeredQuestions[currentQuizIdx] = selectedIdx;
+            if (selectedIdx === NURSING_QUIZ[currentQuizIdx].correct) {
+                quizScore++;
+            }
+            renderQuizQuestion();
+        }
+
+        function nextQuizQuestion() {
+            if (currentQuizIdx < NURSING_QUIZ.length - 1) {
+                currentQuizIdx++;
+                renderQuizQuestion();
+            } else {
+                switchHubTab('cards');
+            }
+        }
+
+        function resetQuiz() {
+            currentQuizIdx = 0;
+            quizScore = 0;
+            answeredQuestions = {};
+            renderQuizQuestion();
+        }
+
+        // 5. CHEAT-CARDS RENDERER
+        const CHEAT_CARDS = [
+            { title: "Emergency Antidotes", badge: "Pharmacology", color: "teal", items: ["Paracetamol → N-Acetylcysteine", "Opioids → Naloxone", "Organophosphates → Atropine", "Benzodiazepines → Flumazenil"] },
+            { title: "Normal Vital Signs (Adult)", badge: "Fundamentals", color: "emerald", items: ["Temp: 98.6°F (37°C)", "Pulse: 60–100 bpm", "Resp: 12–20 breaths/min", "BP: 120/80 mmHg | SpO₂: 95–100%"] },
+            { title: "Normal Lab Values", badge: "Diagnostics", color: "indigo", items: ["Na⁺: 135–145 mEq/L", "K⁺: 3.5–5.0 mEq/L", "Ca²⁺: 8.5–10.5 mg/dL", "Hb (Male/Female): 13–17 / 12–15 g/dL"] },
+            { title: "Golden Nursing Rules", badge: "NORCET", color: "amber", items: ["Airway always comes FIRST (ABC)", "Never leave an unstable patient", "Assess before implementing", "Check Apical pulse before Digoxin"] }
+        ];
+
+        function renderCheatCards() {
+            const grid = document.getElementById('cheatCardsGrid');
+            if (!grid) return;
+            grid.innerHTML = CHEAT_CARDS.map(card => `
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 hover:border-teal-400 transition">
+                    <div class="flex items-center justify-between mb-2">
+                        <h5 class="font-extrabold text-sm text-slate-900">${card.title}</h5>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-teal-100 text-teal-800">${card.badge}</span>
+                    </div>
+                    <ul class="space-y-1 text-xs text-slate-700">
+                        ${card.items.map(i => `<li class="flex items-start gap-1.5"><i class="fa-solid fa-check text-emerald-600 mt-0.5 text-[10px]"></i><span>${i}</span></li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        // 6. STUDENT ATTENDANCE STREAK TRACKER (LocalStorage)
+        function initAttendanceStreak() {
+            try {
+                const today = new Date().toISOString().split('T')[0];
+                const lastVisit = localStorage.getItem('scn_last_visit');
+                let streak = parseInt(localStorage.getItem('scn_streak') || '0', 10);
+
+                if (!lastVisit) {
+                    streak = 1;
+                } else if (lastVisit !== today) {
+                    const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+                    streak = (lastVisit === yesterday) ? streak + 1 : 1;
+                }
+
+                localStorage.setItem('scn_last_visit', today);
+                localStorage.setItem('scn_streak', streak.toString());
+
+                let rank = "Nursing Cadet";
+                if (streak >= 15) rank = "Nursing Officer";
+                else if (streak >= 4) rank = "Clinical Pro";
+
+                document.getElementById('streakBadgeText').textContent = `Day ${streak}`;
+                document.getElementById('studentRankBadge').textContent = rank;
+                document.getElementById('streakModalTitle').textContent = `${streak} Day${streak > 1 ? 's' : ''} Active Streak!`;
+                document.getElementById('streakModalRank').textContent = rank;
+            } catch (e) {
+                // Fallback if localStorage is restricted
+            }
+        }
+
+        // 7. POMODORO 25-MIN STUDY FOCUS TIMER
+        let timerSeconds = 25 * 60;
+        let timerInterval = null;
+
+        function toggleStudyTimer() {
+            const btn = document.getElementById('pomodoroBtn');
+            const display = document.getElementById('pomodoroDisplay');
+
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                btn.classList.remove('bg-emerald-500/30', 'border-emerald-400');
+                return;
+            }
+
+            btn.classList.add('bg-emerald-500/30', 'border-emerald-400');
+            timerInterval = setInterval(() => {
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    timerSeconds = 25 * 60;
+                    display.textContent = "Done!";
+                    return;
+                }
+                timerSeconds--;
+                const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+                const secs = String(timerSeconds % 60).padStart(2, '0');
+                display.textContent = `${mins}:${secs}`;
+            }, 1000);
+        }
+
+        // 8. STUDY HUB MODAL & TABS
+        function openStudyHub(defaultTab = 'quiz') {
+            const modal = document.getElementById('studyHubModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            switchHubTab(defaultTab);
+        }
+
+        function closeStudyHub() {
+            const modal = document.getElementById('studyHubModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function switchHubTab(tabName) {
+            const tabs = {
+                quiz: { btn: 'tabQuiz', content: 'hubContentQuiz' },
+                cards: { btn: 'tabCards', content: 'hubContentCards' },
+                streak: { btn: 'tabStreak', content: 'hubContentStreak' }
+            };
+
+            Object.keys(tabs).forEach(key => {
+                const btnEl = document.getElementById(tabs[key].btn);
+                const contentEl = document.getElementById(tabs[key].content);
+                if (key === tabName) {
+                    btnEl.className = "px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-extrabold bg-teal-700 text-white shadow transition cursor-pointer flex items-center gap-1.5 shrink-0";
+                    contentEl.classList.remove('hidden');
+                } else {
+                    btnEl.className = "px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-slate-700 hover:bg-slate-200 transition cursor-pointer flex items-center gap-1.5 shrink-0";
+                    contentEl.classList.add('hidden');
+                }
+            });
+        }
+
+        // 9. PORTAL SWITCHER, FOCUS MODE, CLOCK & IFRAME CONTROLS
         function switchPortal(portalNumber) {
             activePortal = portalNumber;
             const url = PORTAL_URLS[portalNumber];
@@ -357,62 +872,59 @@
                 loader.style.display = 'flex';
                 loader.classList.remove('opacity-0', 'pointer-events-none');
             }
-
             if (iframe) iframe.src = url;
             if (newTabLink) newTabLink.href = url;
             if (label) {
-                label.textContent = portalNumber === 1 
-                    ? "Active: Portal 1 (Primary)" 
-                    : "Active: Portal 2 (Secondary)";
+                label.textContent = portalNumber === 1 ? "Active: Portal 1 (Primary)" : "Active: Portal 2 (Secondary)";
             }
 
             if (portalNumber === 1) {
-                btn1.className = "px-2.5 py-1 rounded-lg bg-tealaccent-500 text-white shadow transition cursor-pointer";
-                btn2.className = "px-2.5 py-1 rounded-lg text-sky-200 hover:text-white transition cursor-pointer";
+                btn1.className = "px-2 sm:px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 shadow transition cursor-pointer";
+                btn2.className = "px-2 sm:px-2.5 py-1 rounded-lg text-teal-100 hover:text-white transition cursor-pointer";
             } else {
-                btn2.className = "px-2.5 py-1 rounded-lg bg-tealaccent-500 text-white shadow transition cursor-pointer";
-                btn1.className = "px-2.5 py-1 rounded-lg text-sky-200 hover:text-white transition cursor-pointer";
+                btn2.className = "px-2 sm:px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 shadow transition cursor-pointer";
+                btn1.className = "px-2 sm:px-2.5 py-1 rounded-lg text-teal-100 hover:text-white transition cursor-pointer";
             }
         }
 
-        // 1. Live Date & Time Updater (Indian Standard Format)
+        function toggleFocusMode() {
+            isFocusMode = !isFocusMode;
+            const bar = document.getElementById('engagementBar');
+            const icon = document.getElementById('focusIcon');
+            const label = document.getElementById('focusBtnLabel');
+
+            if (isFocusMode) {
+                bar.style.display = 'none';
+                icon.className = "fa-solid fa-compress text-amber-300";
+                if (label) label.textContent = "Show Hub";
+            } else {
+                bar.style.display = 'block';
+                icon.className = "fa-solid fa-expand text-emerald-300";
+                if (label) label.textContent = "Focus View";
+            }
+        }
+
         function updateClock() {
             const now = new Date();
-            const options = {
-                weekday: 'short',
-                day: '2-digit',
-                month: 'short',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
-            };
             const clockEl = document.getElementById('liveClock');
             if (clockEl) {
-                clockEl.textContent = now.toLocaleString('en-IN', options);
+                clockEl.textContent = now.toLocaleTimeString('en-IN', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                });
             }
         }
-        setInterval(updateClock, 1000);
-        updateClock();
 
-        // 2. Handle Iframe Load Completion
         function handleIframeLoad() {
             const loader = document.getElementById('loaderOverlay');
             if (loader) {
                 loader.classList.add('opacity-0', 'pointer-events-none');
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500);
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
             }
         }
 
-        // Fallback timeout to hide loader even if browser delays onload event
-        setTimeout(() => {
-            handleIframeLoad();
-        }, 4500);
-
-        // 3. Reload Iframe Function
         function reloadIframe() {
             const iframe = document.getElementById('attendanceFrame');
             const loader = document.getElementById('loaderOverlay');
@@ -423,31 +935,10 @@
                 loader.style.display = 'flex';
                 loader.classList.remove('opacity-0', 'pointer-events-none');
             }
-
-            // Force fresh reload of currently active portal
             iframe.src = PORTAL_URLS[activePortal];
-
-            setTimeout(() => {
-                if (icon) icon.classList.remove('animate-spin');
-            }, 1000);
+            setTimeout(() => { if (icon) icon.classList.remove('animate-spin'); }, 1000);
         }
 
-        // 4. Toggle Nursing Solution Promotional Banner
-        function togglePromoBanner() {
-            const banner = document.getElementById('nursingSolutionBanner');
-            const chevron = document.getElementById('promoChevron');
-            isPromoVisible = !isPromoVisible;
-
-            if (isPromoVisible) {
-                banner.style.display = 'block';
-                if (chevron) chevron.style.transform = 'rotate(0deg)';
-            } else {
-                banner.style.display = 'none';
-                if (chevron) chevron.style.transform = 'rotate(180deg)';
-            }
-        }
-
-        // 5. Toggle Help / Technical Info Modal
         function toggleHelpModal(show) {
             const modal = document.getElementById('helpModal');
             if (!modal) return;
@@ -459,6 +950,16 @@
                 modal.classList.remove('flex');
             }
         }
+
+        // Initialize all student engagement features on load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateClock();
+            setInterval(updateClock, 1000);
+            initAttendanceStreak();
+            renderQuizQuestion();
+            renderCheatCards();
+            setTimeout(handleIframeLoad, 4500);
+        });
     </script>
 </body>
 </html>
